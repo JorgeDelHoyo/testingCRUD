@@ -5,9 +5,12 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class JPAUtil {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistencia");
+    private static EntityManagerFactory emf;
 
     public static EntityManager getEntityManager(){
+        if(emf == null){
+            emf = Persistence.createEntityManagerFactory("persistencia");
+        }
         return emf.createEntityManager();
     }
 
